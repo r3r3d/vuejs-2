@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script defer src="./js/vue.js"></script>
+    <script defer src="./js/main.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="app">
+    <input type="text" @keyup.enter="addNote" v-model="currentNote">
+
+    <ul>
+        <li v-for="note in notes">
+            <input type="text"
+                   v-if="note.isEditing"
+                   @keyup.enter="editNote(note.text)"
+                   v-model="editValue"
+            >
+            <span>{{note.text}}</span>
+            <button @click="removeNote(note.text)">Delete</button>
+            <button @click="changeEditing(note.text)">Edit</button>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
